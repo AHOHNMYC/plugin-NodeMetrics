@@ -29,5 +29,5 @@ jobs:
       uses: actions/upload-artifact@v4
       if: ${{ github.event_name != 'pull_request' }}
       with:
-        path: build/*
+        path: build/libs/*.jar
         name: "freenet-NodeMetrics"
