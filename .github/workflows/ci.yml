@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Build with Gradle
+      uses: gradle/actions/setup-gradle@v3
+      with:
+        arguments: jar
+
+    - name: Upload as artifact
+      uses: actions/upload-artifact@v4
+      if: ${{ github.event_name != 'pull_request' }}
+      with:
+        path: build/*
+        name: "freenet-NodeMetrics"
