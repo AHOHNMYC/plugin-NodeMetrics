@@ -14,6 +14,12 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Download dependencies
+      run: |
+        dir=.m2/repository/com/github/desyncr/freenet-node-metrics/0.3
+        mkdir -i $dir
+        wget https://github.com/AHOHNMYC/freenet-node-metrics/releases/download/0.3/node-metrics-0.3.jar -qO $dir/freenet-node-metrics-0.3.jar
+
     - name: Build with Gradle
       uses: gradle/actions/setup-gradle@v3
       with:
